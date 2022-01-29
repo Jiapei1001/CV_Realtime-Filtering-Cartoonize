@@ -7,6 +7,8 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 # Bring the headers, such as *.h into the project
 include_directories(include)
+# Include project compile path
+include_directories(${PROJECT_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
