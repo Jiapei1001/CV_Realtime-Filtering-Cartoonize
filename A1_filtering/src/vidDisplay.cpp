@@ -1,11 +1,18 @@
+// vidDisplay.cpp
+
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
+#include "filters.hpp"
+
 using namespace cv;
+using namespace filters;
 
 enum mode {
     ORIGINAL = 1,
-    GRAY = 2,
+    GREY = 2,
+    CUSTOM_GREY = 3,
+    GAUSSIAN = 4,
 } MODE;
 
 int main(int argc, char *argv[]) {
@@ -37,29 +44,42 @@ int main(int argc, char *argv[]) {
         // see if there is a waiting keystroke
         char key = cv::waitKey(10);
 
+        // break the loop
         if (key == 'q') {
             break;
         }
-        // } else if (key == 'o') {
-        //     MODE = ORIGINAL;
-        // } else if (key == 'g') {
-        //     MODE = GRAY;
-        // }
+
+        // assign color mode
         switch (key) {
         case 'o':
             MODE = ORIGINAL;
             break;
         case 'g':
-            MODE = GRAY;
+            MODE = GREY;
+            break;
+        case 'h':
+            MODE = CUSTOM_GREY;
+            break;
+        case 'b':
+            MODE = GAUSSIAN;
             break;
         }
 
+        // render image based on color mode
         switch (MODE) {
         case ORIGINAL:
             cv::imshow("Video", frame);
             break;
-        case GRAY:
+        case GREY:
             cv::cvtColor(frame, dst, COLOR_RGBA2GRAY, 0);
+            cv::imshow("Video", dst);
+            break;
+        case CUSTOM_GREY:
+            filters::greyscale(frame, dst);
+            cv::imshow("Video", dst);
+            break;
+        case GAUSSIAN:
+            filters::blur5x5(frame, dst);
             cv::imshow("Video", dst);
             break;
         default:
