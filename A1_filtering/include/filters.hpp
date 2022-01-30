@@ -10,6 +10,9 @@ namespace filters {
 int greyscale(cv::Mat &src, cv::Mat &dst);
 int blur5x5(cv::Mat &src, cv::Mat &dst);
 
+int sobelX3x3(cv::Mat &src, cv::Mat &dst);
+int sobelY3x3(cv::Mat &src, cv::Mat &dst);
+
 }  // namespace filters
 
 #endif /* filters_hpp */

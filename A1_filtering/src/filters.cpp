@@ -99,3 +99,80 @@ int filters::blur5x5(cv::Mat &src, cv::Mat &dst) {
 
     return 0;
 }
+
+int apply_sobel(cv::Mat &src, cv::Mat &dst, double co_r[], double co_c[]) {
+    cv::Mat temp(src.rows, src.cols, CV_16SC3);
+    int r, c;
+
+    for (int y = 0; y < src.rows; y++) {
+        for (int x = 0; x < src.cols; x++) {
+            float sum[] = {0.0, 0.0, 0.0};
+
+            for (int i = -1; i <= 1; i++) {
+                r = processBoundary(src.rows, y - i);
+
+                cv::Vec3b p = src.at<cv::Vec3b>(r, x);
+
+                sum[0] += p.val[0] * co_r[i + 1];
+                sum[1] += p.val[1] * co_r[i + 1];
+                sum[2] += p.val[2] * co_r[i + 1];
+            }
+
+            for (int i = 0; i < 3; i++) {
+                sum[i] /= 1;
+            }
+
+            // NOTE: here is cv::Vec3s as type CV_16S3C, for range of -255 to 255
+            // it is not CV_8UC3, unsigned char
+            cv::Vec3s t = temp.at<cv::Vec3s>(y, x);
+            t.val[0] = sum[0];
+            t.val[1] = sum[1];
+            t.val[2] = sum[2];
+            temp.at<cv::Vec3s>(y, x) = t;
+        }
+    }
+
+    for (int y = 0; y < src.rows; y++) {
+        for (int x = 0; x < src.cols; x++) {
+            float sum[] = {0.0, 0.0, 0.0};
+
+            for (int i = -1; i <= 1; i++) {
+                c = processBoundary(src.cols, x - i);
+
+                cv::Vec3s p = temp.at<cv::Vec3s>(y, c);  // CV_16S3C
+
+                sum[0] += p.val[0] * co_c[i + 1];
+                sum[1] += p.val[1] * co_c[i + 1];
+                sum[2] += p.val[2] * co_c[i + 1];
+            }
+
+            for (int i = 0; i < 3; i++) {
+                sum[i] /= 4;
+            }
+
+            cv::Vec3s t = dst.at<cv::Vec3s>(y, x);
+            t.val[0] = sum[0];
+            t.val[1] = sum[1];
+            t.val[2] = sum[2];
+            dst.at<cv::Vec3s>(y, x) = t;
+        }
+    }
+
+    return 0;
+}
+
+int filters::sobelX3x3(cv::Mat &src, cv::Mat &dst) {
+    double co_r[] = {-1.0, 0.0, 1.0};
+    double co_c[] = {1.0, 2.0, 1.0};
+
+    apply_sobel(src, dst, co_r, co_c);
+    return 0;
+}
+
+int filters::sobelY3x3(cv::Mat &src, cv::Mat &dst) {
+    double co_r[] = {1.0, 2.0, 1.0};
+    double co_c[] = {-1.0, 0.0, 1.0};
+
+    apply_sobel(src, dst, co_r, co_c);
+    return 0;
+}

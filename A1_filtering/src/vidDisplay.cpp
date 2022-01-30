@@ -13,6 +13,8 @@ enum mode {
     GREY = 2,
     CUSTOM_GREY = 3,
     GAUSSIAN = 4,
+    SOBEL_X = 5,
+    SOBEL_Y = 6,
 } MODE;
 
 int main(int argc, char *argv[]) {
@@ -31,8 +33,13 @@ int main(int argc, char *argv[]) {
     printf("Expected size: %d %d\n", refS.width, refS.height);
 
     cv::namedWindow("Video", 1);  // identifies a window
+
     cv::Mat frame;
+    // must pass capdev to frame, to get updated frame size for initiating other Mat as below
+    *capdev >> frame;
+
     cv::Mat dst;
+    cv::Mat sol16(frame.rows, frame.cols, CV_16SC3);
 
     for (;;) {
         *capdev >> frame;  // get a new frame from the camera, treat as a stream
@@ -63,6 +70,12 @@ int main(int argc, char *argv[]) {
         case 'b':
             MODE = GAUSSIAN;
             break;
+        case 'x':
+            MODE = SOBEL_X;
+            break;
+        case 'y':
+            MODE = SOBEL_Y;
+            break;
         }
 
         // render image based on color mode
@@ -80,6 +93,16 @@ int main(int argc, char *argv[]) {
             break;
         case GAUSSIAN:
             filters::blur5x5(frame, dst);
+            cv::imshow("Video", dst);
+            break;
+        case SOBEL_X:
+            filters::sobelX3x3(frame, sol16);
+            cv::convertScaleAbs(sol16, dst, 1, 0);  // convert from CV_16S3C to CV_8UC3 for Mat
+            cv::imshow("Video", dst);
+            break;
+        case SOBEL_Y:
+            filters::sobelY3x3(frame, sol16);
+            cv::convertScaleAbs(sol16, dst, 1, 0);  // convert from CV_16S3C to CV_8UC3 for Mat
             cv::imshow("Video", dst);
             break;
         default:
