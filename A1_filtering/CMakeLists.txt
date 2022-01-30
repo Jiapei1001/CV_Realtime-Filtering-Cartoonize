@@ -18,7 +18,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 file(GLOB SOURCES "src/*.cpp")
 
-add_executable(imgDisplay ${SOURCES})
-# add_executable(imgDisplay imgDisplay.cpp)
+add_executable(imgDisplay src/imgDisplay.cpp)
+add_executable(vidDisplay src/vidDisplay.cpp)
 
 target_link_libraries(imgDisplay ${OpenCV_LIBS})
+target_link_libraries(vidDisplay ${OpenCV_LIBS})
