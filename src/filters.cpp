@@ -2,6 +2,8 @@
 
 #include "filters.hpp"
 
+#include <math.h>
+
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -174,5 +176,23 @@ int filters::sobelY3x3(cv::Mat &src, cv::Mat &dst) {
     double co_c[] = {-1.0, 0.0, 1.0};
 
     apply_sobel(src, dst, co_r, co_c);
+    return 0;
+}
+
+int filters::magnitude(cv::Mat &sx, cv::Mat &sy, cv::Mat &dst) {
+    for (int y = 0; y < sx.rows; y++) {
+        for (int x = 0; x < sy.rows; x++) {
+            cv::Vec3s h = sx.at<cv::Vec3s>(y, x);
+            cv::Vec3s v = sy.at<cv::Vec3s>(y, x);
+            cv::Vec3b t = dst.at<cv::Vec3b>(y, x);
+
+            for (int i = 0; i < 3; i++) {
+                t.val[i] = (unsigned char)sqrt(h[i] * h[i] + v[i] * v[i]);
+            }
+
+            dst.at<cv::Vec3b>(y, x) = t;
+        }
+    }
+
     return 0;
 }

@@ -15,6 +15,7 @@ enum mode {
     GAUSSIAN = 4,
     SOBEL_X = 5,
     SOBEL_Y = 6,
+    MAGNITUDE = 7,
 } MODE;
 
 int main(int argc, char *argv[]) {
@@ -38,8 +39,9 @@ int main(int argc, char *argv[]) {
     // must pass capdev to frame, to get updated frame size for initiating other Mat as below
     *capdev >> frame;
 
-    cv::Mat dst;
-    cv::Mat sol16(frame.rows, frame.cols, CV_16SC3);
+    cv::Mat dst(frame.rows, frame.cols, CV_8UC3);       // 3 unsigned chars for properly displaying a Mat
+    cv::Mat sol16_x(frame.rows, frame.cols, CV_16SC3);  // signed short, for [-255, 255]
+    cv::Mat sol16_y(frame.rows, frame.cols, CV_16SC3);
 
     for (;;) {
         *capdev >> frame;  // get a new frame from the camera, treat as a stream
@@ -76,6 +78,9 @@ int main(int argc, char *argv[]) {
         case 'y':
             MODE = SOBEL_Y;
             break;
+        case 'm':
+            MODE = MAGNITUDE;
+            break;
         }
 
         // render image based on color mode
@@ -96,13 +101,19 @@ int main(int argc, char *argv[]) {
             cv::imshow("Video", dst);
             break;
         case SOBEL_X:
-            filters::sobelX3x3(frame, sol16);
-            cv::convertScaleAbs(sol16, dst, 1, 0);  // convert from CV_16S3C to CV_8UC3 for Mat
+            filters::sobelX3x3(frame, sol16_x);
+            cv::convertScaleAbs(sol16_x, dst, 1, 0);  // convert from CV_16S3C to CV_8UC3 for Mat
             cv::imshow("Video", dst);
             break;
         case SOBEL_Y:
-            filters::sobelY3x3(frame, sol16);
-            cv::convertScaleAbs(sol16, dst, 1, 0);  // convert from CV_16S3C to CV_8UC3 for Mat
+            filters::sobelY3x3(frame, sol16_y);
+            cv::convertScaleAbs(sol16_y, dst, 1, 0);  // convert from CV_16S3C to CV_8UC3 for Mat
+            cv::imshow("Video", dst);
+            break;
+        case MAGNITUDE:
+            filters::sobelX3x3(frame, sol16_x);
+            filters::sobelY3x3(frame, sol16_y);
+            filters::magnitude(sol16_x, sol16_y, dst);
             cv::imshow("Video", dst);
             break;
         default:
