@@ -20,10 +20,11 @@ enum mode {
     MAGNITUDE = 7,
     QUANTIZE = 8,
     CARTOON = 9,
-    PENCIL = 10,
-    CONTOUR = 11,
-    EDGE = 12,
-    GABOR = 13,
+    INVERT = 10,
+    PENCIL = 11,
+    CONTOUR = 12,
+    EDGE = 13,
+    GABOR = 14,
 } MODE;
 
 int main(int argc, char *argv[]) {
@@ -119,6 +120,9 @@ int main(int argc, char *argv[]) {
         case '[':
             magThreshold--;
             break;
+        case 'n':
+            MODE = INVERT;
+            break;
         case '1':
             MODE = PENCIL;
             break;
@@ -175,6 +179,10 @@ int main(int argc, char *argv[]) {
             break;
         case CARTOON:
             filters::cartoon(frame, dst, quantizeLevel, magThreshold);
+            cv::imshow("Video", dst);
+            break;
+        case INVERT:
+            filters::invert(frame, dst);
             cv::imshow("Video", dst);
             break;
         case PENCIL:

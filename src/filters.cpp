@@ -26,11 +26,12 @@ void filters::printOptions() {
     std::cout << "\tUse key '-' to decrease and key '=' to increase quantize level. Default level is set to 15." << std::endl;
     std::cout << "9)Cartoonized Image \t\t -key 'c' :" << std::endl;
     std::cout << "\tUse key '[' to decrease and key ']' to increase cartoonized magnitude threshod. Default level is set to 18." << std::endl;
-    std::cout << "10)Apply Pencil Sketch \t\t -key '1' :" << std::endl;
-    std::cout << "11)Apply Green Spot Contour \t -key '2' :" << std::endl;
-    std::cout << "12)Apply Canny Edge Detection \t -key '3' :" << std::endl;
-    std::cout << "13)Apply Gabor Kernel Texture \t -key '4' :" << std::endl;
-    std::cout << "14)Save Image \t\t\t -key 's' :" << std::endl;
+    std::cout << "10)Invert an Image \t\t -key 'n' :" << std::endl;
+    std::cout << "11)Apply Pencil Sketch \t\t -key '1' :" << std::endl;
+    std::cout << "12)Apply Green Spot Contour \t -key '2' :" << std::endl;
+    std::cout << "13)Apply Canny Edge Detection \t -key '3' :" << std::endl;
+    std::cout << "14)Apply Gabor Kernel Texture \t -key '4' :" << std::endl;
+    std::cout << "15)Save Image \t\t\t -key 's' :" << std::endl;
 }
 
 int processBoundary(int total, int x) {
@@ -277,6 +278,18 @@ int filters::cartoon(cv::Mat &src, cv::Mat &dst, int levels, int magThreshold) {
             dst.at<cv::Vec3b>(y, x) = t;
         }
     }
+
+    return 0;
+}
+
+// Apply a Filter to invert an image
+int filters::invert(cv::Mat &src, cv::Mat &dst) {
+    cv::Mat sub_mat(src.rows, src.cols, CV_8UC3);
+
+    // fill solid white color
+    sub_mat = cv::Scalar(255, 255, 255);
+
+    cv::subtract(sub_mat, src, dst);
 
     return 0;
 }

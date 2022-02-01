@@ -18,17 +18,18 @@ enum mode {
     MAGNITUDE = 7,
     QUANTIZE = 8,
     CARTOON = 9,
-    PENCIL = 10,
-    CONTOUR = 11,
-    EDGE = 12,
-    GABOR = 13,
+    INVERT = 10,
+    PENCIL = 11,
+    CONTOUR = 12,
+    EDGE = 13,
+    GABOR = 14,
 } MODE;
 
 int main(int argc, char const *argv[]) {
     std::cout << "OpenCV Hello the world..." << std::endl;
 
     Mat img = imread("../data/dog.jpg", IMREAD_COLOR);
-    namedWindow("dog", WINDOW_AUTOSIZE);
+    namedWindow("image", WINDOW_AUTOSIZE);
 
     filters::printOptions();
 
@@ -96,6 +97,9 @@ int main(int argc, char const *argv[]) {
         case '[':
             magThreshold--;
             break;
+        case 'n':
+            MODE = INVERT;
+            break;
         case '1':
             MODE = PENCIL;
             break;
@@ -152,6 +156,10 @@ int main(int argc, char const *argv[]) {
             break;
         case CARTOON:
             filters::cartoon(img, dst, quantizeLevel, magThreshold);
+            cv::imshow("image", dst);
+            break;
+        case INVERT:
+            filters::invert(img, dst);
             cv::imshow("image", dst);
             break;
         case PENCIL:
