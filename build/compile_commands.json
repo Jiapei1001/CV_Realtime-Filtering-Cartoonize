@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build",
+  "command": "/usr/bin/clang++  -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/include\" -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build\" -isystem /usr/local/Cellar/opencv/4.5.4_3/include/opencv4 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -std=gnu++11 -o CMakeFiles/imgDisplay.dir/src/filters.cpp.o -c \"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/filters.cpp\"",
+  "file": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/filters.cpp"
+},
+{
+  "directory": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build",
+  "command": "/usr/bin/clang++  -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/include\" -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build\" -isystem /usr/local/Cellar/opencv/4.5.4_3/include/opencv4 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -std=gnu++11 -o CMakeFiles/imgDisplay.dir/src/imgDisplay.cpp.o -c \"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/imgDisplay.cpp\"",
+  "file": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/imgDisplay.cpp"
+},
+{
+  "directory": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build",
+  "command": "/usr/bin/clang++  -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/include\" -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build\" -isystem /usr/local/Cellar/opencv/4.5.4_3/include/opencv4 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -std=gnu++11 -o CMakeFiles/vidDisplay.dir/src/filters.cpp.o -c \"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/filters.cpp\"",
+  "file": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/filters.cpp"
+},
+{
+  "directory": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build",
+  "command": "/usr/bin/clang++  -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/include\" -I\"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/build\" -isystem /usr/local/Cellar/opencv/4.5.4_3/include/opencv4 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -std=gnu++11 -o CMakeFiles/vidDisplay.dir/src/vidDisplay.cpp.o -c \"/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/vidDisplay.cpp\"",
+  "file": "/Volumes/GoogleDrive/My Drive/NEU CS/cs5330/Assignment/A1_filtering/src/vidDisplay.cpp"
+}
+]

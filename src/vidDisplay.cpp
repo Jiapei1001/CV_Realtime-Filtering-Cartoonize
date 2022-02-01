@@ -4,10 +4,12 @@
 #include <opencv2/opencv.hpp>
 
 #include "filters.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
 
 using namespace cv;
 using namespace filters;
-
+using namespace std;
 enum mode {
     ORIGINAL = 1,
     GREY = 2,
@@ -16,6 +18,12 @@ enum mode {
     SOBEL_X = 5,
     SOBEL_Y = 6,
     MAGNITUDE = 7,
+    QUANTIZE = 8,
+    CARTOON = 9,
+    PENCIL = 10,
+    CONTOUR = 11,
+    EDGE = 12,
+    GABOR = 13,
 } MODE;
 
 int main(int argc, char *argv[]) {
@@ -33,15 +41,24 @@ int main(int argc, char *argv[]) {
                   (int)capdev->get(cv::CAP_PROP_FRAME_HEIGHT));
     printf("Expected size: %d %d\n", refS.width, refS.height);
 
+    filters::printOptions();
+
     cv::namedWindow("Video", 1);  // identifies a window
 
     cv::Mat frame;
     // must pass capdev to frame, to get updated frame size for initiating other Mat as below
     *capdev >> frame;
 
-    cv::Mat dst(frame.rows, frame.cols, CV_8UC3);       // 3 unsigned chars for properly displaying a Mat
-    cv::Mat sol16_x(frame.rows, frame.cols, CV_16SC3);  // signed short, for [-255, 255]
+    cv::Mat dst(frame.rows, frame.cols, CV_8UC3);  // CV_8UC3: 3 unsigned chars for properly displaying a Mat
+    cv::Mat temp1(frame.rows, frame.cols, CV_8UC3);
+    cv::Mat temp2(frame.rows, frame.cols, CV_8UC3);
+    cv::Mat sol16_x(frame.rows, frame.cols, CV_16SC3);  // CV_16SC3: signed short, for [-255, 255]
     cv::Mat sol16_y(frame.rows, frame.cols, CV_16SC3);
+
+    int quantizeLevel = 15;
+    int magThreshold = 18;
+
+    dst = frame.clone();
 
     for (;;) {
         *capdev >> frame;  // get a new frame from the camera, treat as a stream
@@ -81,6 +98,42 @@ int main(int argc, char *argv[]) {
         case 'm':
             MODE = MAGNITUDE;
             break;
+        case 'l':
+            MODE = QUANTIZE;
+            quantizeLevel = 15;
+            break;
+        case 'c':
+            MODE = CARTOON;
+            quantizeLevel = 15;
+            magThreshold = 18;
+            break;
+        case '=':
+            quantizeLevel++;
+            break;
+        case '-':
+            quantizeLevel--;
+            break;
+        case ']':
+            magThreshold++;
+            break;
+        case '[':
+            magThreshold--;
+            break;
+        case '1':
+            MODE = PENCIL;
+            break;
+        case '2':
+            MODE = CONTOUR;
+            break;
+        case '3':
+            MODE = EDGE;
+            break;
+        case '4':
+            MODE = GABOR;
+            break;
+        case 's':
+            cv::imwrite("/Users/jiapei/Desktop/image.jpg", dst);
+            break;
         }
 
         // render image based on color mode
@@ -113,7 +166,32 @@ int main(int argc, char *argv[]) {
         case MAGNITUDE:
             filters::sobelX3x3(frame, sol16_x);
             filters::sobelY3x3(frame, sol16_y);
-            filters::magnitude(sol16_x, sol16_y, dst);
+            filters::magnitude(sol16_x, sol16_y, dst);  // convert from signed short Vec3s to unsigned char Vec3b within the function
+            cv::imshow("Video", dst);
+            break;
+        case QUANTIZE:
+            filters::blurQuantize(frame, dst, quantizeLevel);
+            cv::imshow("Video", dst);
+            break;
+        case CARTOON:
+            filters::cartoon(frame, dst, quantizeLevel, magThreshold);
+            cv::imshow("Video", dst);
+            break;
+        case PENCIL:
+            cv::pencilSketch(frame, temp1, temp2, 10, 0.07f, 0.03f);
+            cv::detailEnhance(temp2, dst);
+            cv::imshow("Video", dst);
+            break;
+        case CONTOUR:
+            filters::contour(frame, dst);
+            cv::imshow("Video", dst);
+            break;
+        case EDGE:
+            filters::cannyEdgeVid(frame, dst);
+            cv::imshow("Video", dst);
+            break;
+        case GABOR:
+            filters::gabor(frame, dst);
             cv::imshow("Video", dst);
             break;
         default:
