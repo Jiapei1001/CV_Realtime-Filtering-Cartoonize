@@ -2,21 +2,10 @@
 Realtime Filtering for images or video streams
 
 ## Summary
-This project explores several types of filtering methods. These filters can be applied to an image or a video frame. The filter rendering happens in realtime. 
+This project explores several types of filtering methods. These filters can be applied to an image or a video frame, and render in realtime. It is built on top of OpenCV library, and explores some modules including core functionality, image processing, etc.
 
 Some of the high level steps are: **opening, capturing, manipulating, and writing images**. User can always get the latest result after a selected filtering type. User can type different keys for a selection of filters. In addition to these filters, user can also type 's' to save the rendered image, or type 'q' to exit.
 
-This project is built on top of OpenCV library. It explores some modules including core functionality, image processing, etc.
-
-**Instructions**
-
-```
-cd /bin
-cmake ..
-make
-./imgDisplay
-./vidDisplay
-```
 
 ## Custom Extensions
 **Sketch & X-ray**
@@ -56,6 +45,78 @@ make
 </div>
 <br/><br/>
 
+**Alternative Grayscale**
+<div>
+  <img width="560" alt="custom grayscale" src="https://user-images.githubusercontent.com/20607583/152031139-b2030dc3-4975-46c2-87a6-5ad746e79e5f.jpg">
+  <img width="300" alt="original" src="https://user-images.githubusercontent.com/20607583/152030445-c6201588-bb55-493a-a89d-27ff425fbad9.jpg">
+</div>
+<br/><br/>
+
+**Gaussian Blur**
+<div>
+  <img width="560" alt="blur" src="https://user-images.githubusercontent.com/20607583/152031232-c9de262b-7952-441b-a111-6207839ddac7.jpg">
+  <img width="300" alt="original" src="https://user-images.githubusercontent.com/20607583/152030445-c6201588-bb55-493a-a89d-27ff425fbad9.jpg">
+</div>
+<br/><br/>
+
+**Sobel X**
+<div>
+  <img width="560" alt="sobel_X" src="https://user-images.githubusercontent.com/20607583/152031339-ace11682-e743-4471-ade4-1fba06aba412.jpg">
+  <img width="300" alt="original1" src="https://user-images.githubusercontent.com/20607583/152031353-b7e85939-865a-4349-b67b-d734faac1d4e.jpg">
+</div>
+<br/><br/>
 
 
+**Sobel Y**
+<div>
+  <img width="560" alt="sobel_Y" src="https://user-images.githubusercontent.com/20607583/152031454-5b2bba14-8acf-4aa4-8df0-1e8391445658.jpg">
+  <img width="300" alt="original1" src="https://user-images.githubusercontent.com/20607583/152031353-b7e85939-865a-4349-b67b-d734faac1d4e.jpg">
+</div>
+<br/><br/>
+
+**Gradient Magnitude**
+<div>
+  <img width="560" alt="gradient magnitude" src="https://user-images.githubusercontent.com/20607583/152031544-cb4234a8-0c43-4d8b-827b-50e3a318ddb4.jpg">
+  <img width="300" alt="original1" src="https://user-images.githubusercontent.com/20607583/152031353-b7e85939-865a-4349-b67b-d734faac1d4e.jpg">
+</div>
+<br/><br/>
+
+**Blur and Quantize**
+<div>
+  <img width="560" alt="blur_quantize" src="https://user-images.githubusercontent.com/20607583/152031631-8b5e240a-abee-4543-927e-564a43d2f24e.jpg">
+  <img width="300" alt="original2" src="https://user-images.githubusercontent.com/20607583/152031640-d53186d1-3dd6-46d3-b0db-f6a841c29221.jpg">
+</div>
+<br/><br/>
+
+**Cartoonization**
+<div>
+  <img width="560" alt="cartoonization" src="https://user-images.githubusercontent.com/20607583/152031726-9d7171a2-9257-4921-b6dd-2a6275498f3a.jpg">
+  <img width="300" alt="original2" src="https://user-images.githubusercontent.com/20607583/152031640-d53186d1-3dd6-46d3-b0db-f6a841c29221.jpg">
+</div>
+<br/><br/>
+
+**Invert**
+<div>
+  <img width="560" alt="invert" src="https://user-images.githubusercontent.com/20607583/152031803-025e2b2c-c799-48b3-bd79-d03cba8ceb0c.jpg">
+  <img width="300" alt="original2" src="https://user-images.githubusercontent.com/20607583/152031640-d53186d1-3dd6-46d3-b0db-f6a841c29221.jpg">
+</div>
+<br/><br/>
+
+
+
+## Build Instructions
+```
+cd /bin
+cmake ..
+make
+./imgDisplay
+./vidDisplay
+```
+
+
+### Acknowledgements
+
+https://docs.opencv.org/4.5.5/
+
+Stack Overflow, Medium, Youtube
 
