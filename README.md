@@ -11,7 +11,7 @@ Some of the high level steps are: **opening, capturing, manipulating, and writin
 **Sketch & X-ray**
 <div>
   <img width="560" alt="dog_pencil" src="https://user-images.githubusercontent.com/20607583/152029097-d707e8fe-9575-44fc-879d-f3e4a81ec871.jpg">
-  <img width="260" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
+  <img width="280" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
 </div>
 <br/><br/>
 
