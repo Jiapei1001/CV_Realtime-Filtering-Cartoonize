@@ -18,21 +18,21 @@ Some of the high level steps are: **opening, capturing, manipulating, and writin
 **Lightening spotted mask**
 <div>
   <img width="560" alt="dog_green_dot_contour" src="https://user-images.githubusercontent.com/20607583/152029445-34427c03-6db8-4287-a695-ccf2ef4f2fd6.jpg">
-  <img width="300" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
+  <img width="260" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
 </div>
 <br/><br/>
 
 **X-ray Light blue mask**
 <div>
   <img width="560" alt="dog_blue_mask" src="https://user-images.githubusercontent.com/20607583/152029512-58be5c89-32fc-47f3-862a-ca9bc5f1cdf2.jpg">
-  <img width="300" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
+  <img width="260" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
 </div>
 <br/><br/>
 
 **Distorted Dots mask**
 <div>
   <img width="560" alt="dog_gabor_kernel_texture" src="https://user-images.githubusercontent.com/20607583/152029684-9da95463-52e3-496c-873e-8ac8f22f123e.jpg">
-  <img width="300" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
+  <img width="260" alt="dog_original" src="https://user-images.githubusercontent.com/20607583/152029146-44ebc5ab-5d93-4acf-8fbd-6ccb06e51318.jpg">
 </div>
 <br/><br/>
 
